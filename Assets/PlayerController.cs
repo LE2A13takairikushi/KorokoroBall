@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float power = -10;
+    public float power = -30;
     public Rigidbody rigidbody;
 
 
@@ -19,19 +20,23 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            rigidbody.AddForce(new Vector3(1, 0, 0) * power);
+            rigidbody.AddForce(new Vector3(0, 0, -1) * power);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            rigidbody.AddForce(new Vector3(-1, 0, 0) * power);
+            rigidbody.AddForce(new Vector3(0, 0, 1) * power);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rigidbody.AddForce(new Vector3(0, 0, -1) * power);
+            rigidbody.AddForce(new Vector3(-1, 0, 0) * power);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody.AddForce(new Vector3(0, 0, 1) * power);
+            rigidbody.AddForce(new Vector3(1, 0, 0) * power);
+        }
+        if(this.transform.position.y < 90)
+        {
+            GameManager.SceneReset();
         }
     }
 }
